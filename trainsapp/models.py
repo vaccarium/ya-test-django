@@ -3,9 +3,8 @@ from __future__ import unicode_literals
 from django.db import models
 
 class Train(models.Model):
-    id = models.AutoField()
     number = models.CharField(max_length = 6)
-    name = models.CharField(max_length = 100, null = True)
+    name = models.CharField(max_length = 100, null = True, blank = True)
     
     def __unicode__(self):
         return u"(Train {}, id {})".format(self.number, self.id)
@@ -17,15 +16,37 @@ class Station(models.Model):
     def __unicode__(self):
         return u"(Station {}, code {})".format(self.name, self.code)
 
-class TrainStop(models.Model):
+class IntermediateStop(models.Model):
     train = models.ForeignKey(Train)
     station = models.ForeignKey(Station)
-    arrival = models.DateTimeField(null = True)
-    departure = models.DateTimeField(null = True)
+    arrival = models.DateTimeField()
+    departure = models.DateTimeField()
     
     def __unicode__(self):
         return u"(Stop at {} from {} to {})".format(
             self.station.name,
             self.arrival,
             self.departure
+        )
+
+class Departure(models.Model):
+    train = models.OneToOneField(Train)
+    station = models.ForeignKey(Station)
+    departure = models.DateTimeField()
+    
+    def __unicode__(self):
+        return u"(Departure from {} at {})".format(
+            self.station.name,
+            self.departure
+        )
+
+class Arrival(models.Model):
+    train = models.OneToOneField(Train)
+    station = models.ForeignKey(Station)
+    arrival = models.DateTimeField()
+    
+    def __unicode__(self):
+        return u"(Arrival at {} at {})".format(
+            self.station.name,
+            self.arrival
         )
