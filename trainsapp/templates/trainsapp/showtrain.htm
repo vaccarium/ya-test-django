@@ -1,0 +1,51 @@
+{% load timedelta %}
+<!doctype html>
+<html>
+<head>
+	{% if name %}
+	<title>Поезд {{ name }} ({{ number }}), {{ departure.station.name }} -- {{ arrival.station.name }}</title>
+	{% else %}
+	<title>Поезд {{ number }}, {{ departure.station.name }} -- {{ arrival.station.name }}</title>
+	{% endif %}
+</head>
+<body>
+	<h1>Расписание поездов</h1>
+
+	<h2>
+		{% if name %}
+		Поезд {{ name }} ({{ number }})
+		{% else %}
+		Поезд {{ number }}
+		{% endif %}
+	</h2>
+
+	<table class="stops">
+		<tr>
+			<th>Станция</th>
+			<th>Прибытие</th>
+			<th>Стоянка</th>
+			<th>Отправление</th>
+		</tr>
+		<tr>
+			<td>{{ departure.station.name }}</td>
+			<td></td>
+			<td></td>
+			<td>{{ departure.departure|date:"j.m, H:i" }}</td>
+		</tr>
+		{% for stop in intermediate %}
+		<tr>
+			<td>{{ stop.station.name }}</td>
+			<td>{{ stop.arrival|date:"j.m, H:i" }}</td>
+			<td>{{ stop.duration|timedelta }}</td>
+			<td>{{ stop.departure|date:"j.m, H:i" }}</td>
+		</tr>
+		{% endfor %}
+		<tr>
+			<td>{{ arrival.station.name }}</td>
+			<td>{{ arrival.arrival|date:"j.m, H:i" }}</td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+</body>
+</html>
