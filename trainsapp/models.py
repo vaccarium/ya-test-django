@@ -21,7 +21,15 @@ class IntermediateStop(models.Model):
     station = models.ForeignKey(Station)
     arrival = models.DateTimeField()
     departure = models.DateTimeField()
-    
+
+    @property
+    def duration(self):
+        return self.departure - self.arrival
+
+    @property
+    def sorting_date(self):
+        return self.departure
+
     def __unicode__(self):
         return u"(Stop at {} from {} to {})".format(
             self.station.name,
@@ -29,10 +37,19 @@ class IntermediateStop(models.Model):
             self.departure
         )
 
+    class Meta:
+        ordering = ('departure',)
+
+    #def clean
+
 class Departure(models.Model):
     train = models.OneToOneField(Train)
     station = models.ForeignKey(Station)
     departure = models.DateTimeField()
+    
+    @property
+    def sorting_date(self):
+        return self.departure
     
     def __unicode__(self):
         return u"(Departure from {} at {})".format(
@@ -44,6 +61,10 @@ class Arrival(models.Model):
     train = models.OneToOneField(Train)
     station = models.ForeignKey(Station)
     arrival = models.DateTimeField()
+
+    @property
+    def sorting_date(self):
+        return self.arrival
     
     def __unicode__(self):
         return u"(Arrival at {} at {})".format(
