@@ -15,9 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.utils.timezone import now
 from trainsapp import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-	url(r'^train/(\d+)/', views.showtrain),
+
+	url(r'^train/(\d+)/', views.showtrain, name='showtrain'),
+	url(r'^station/(\d+)/(\d{4})/(\d{1,2})/', views.showstation, name='showstation'),
+	url(r'^station/(\d+)/', views.showstation, {'year': now().year, 'month': now().month}, name='showstation'),
+
+	#url(r'^/', views.mainpage),
 ]
