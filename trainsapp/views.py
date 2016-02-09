@@ -1,4 +1,5 @@
 from django.shortcuts import render, render_to_response, get_object_or_404
+from django.db.models import Q
 from trainsapp.models import *
 from datetime import datetime, timedelta
 import calendar
@@ -65,4 +66,33 @@ def showstation(request, stationcode, year, month):
 		'prevmonth': prevmonth,
 		'nextmonth': nextmonth,
 		'weeks': weeks
+	})
+
+def route(request, origincode, destinationcode):
+	origincode = int(origincode)
+	destinationcode = int(destinationcode)
+
+	origin = get_object_or_404(Station, code=origincode)
+	destination = get_object_or_404(Station, code=destinationcode)
+
+	originquery = Q(departure__station__code=origincode) | Q(intermediatestop__station__code=origincode)
+	destinationquery = Q(intermediatestop__station__code=destinationcode) | Q(arrival__station__code=destinationcode)
+	trains = Train.objects.filter(originquery).filter(destinationquery)
+	result = []
+	for train in trains:
+		if train.departure.station.code == origincode:
+			departuretime = train.departure.departure
+		else:
+			departuretime = train.intermediatestop_set.filter(station__code=origincode).earliest('departure').departure
+		if train.arrival.station.code == destinationcode:
+			arrivaltime = train.arrival.arrival
+		else:
+			arrivaltime = train.intermediatestop_set.filter(station__code=destinationcode).latest('arrival').arrival
+		if departuretime < arrivaltime:
+			result.append({'train': train, 'departure': departuretime, 'arrival': arrivaltime, 'duration': arrivaltime - departuretime})
+
+	return render_to_response('trainsapp/route.htm', {
+		'origin': origin,
+		'destination': destination,
+		'trains': result
 	})

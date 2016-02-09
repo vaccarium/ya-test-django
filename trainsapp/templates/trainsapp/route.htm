@@ -1,0 +1,31 @@
+{% load timedelta %}
+<!doctype html>
+<html>
+<head>
+	<title>Маршруты между станциями {{ origin.name }} и {{ destination.name }}</title>
+</head>
+<body>
+	<h1>Расписание поездов</h1>
+
+	<h2>
+		Маршруты между станциями {{ origin.name }} и {{ destination.name }}
+	</h2>
+
+	<table class="trains">
+		<tr>
+			<th>Поезд</th>
+			<th>Отправление со ст.&nbsp;{{ origin.name }}</th>
+			<th>Время в пути</th>
+			<th>Прибытие на ст.&nbsp;{{ destination.name }}</th>
+		</tr>
+		{% for result in trains %}
+		<tr>
+			<td><a href="{% url "showtrain" result.train.id %}">{{ result.train.number }}</a></td>
+			<td>{{ result.departure|date:"j.m, H:i" }}</td>
+			<td> {{ result.duration|timedelta }}</td>
+			<td>{{ result.arrival|date:"j.m, H:i" }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</body>
+</html>

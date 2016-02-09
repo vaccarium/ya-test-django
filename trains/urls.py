@@ -25,5 +25,7 @@ urlpatterns = [
 	url(r'^station/(\d+)/(\d{4})/(\d{1,2})/', views.showstation, name='showstation'),
 	url(r'^station/(\d+)/', views.showstation, {'year': now().year, 'month': now().month}, name='showstation'),
 
+	url(r'^route/(\d+)/(\d+)/', views.route, name='route'),
+
 	#url(r'^/', views.mainpage),
 ]
