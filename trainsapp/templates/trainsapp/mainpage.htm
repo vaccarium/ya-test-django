@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+	<title>Расписание поездов</title>
+</head>
+<body>
+	<h1>Расписание поездов</h1>
+
+	<h3>
+		Список станций
+	</h3>
+	<ul class="stations">
+		{% for station in stations %}
+		<li><a href="{% url "showstation" station.code %}">{{ station.name }}</a></li>
+		{% endfor %}
+	</ul>
+
+	<h3>
+		Список поездов
+	</h3>
+	<ul class="trains">
+		{% for train in trains %}
+		<li><a href="{% url "showtrain" train.id %}">{{ train.number }}</a></li>
+		{% endfor %}
+	</ul>
+</body>
+</html>

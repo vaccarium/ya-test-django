@@ -96,3 +96,12 @@ def route(request, origincode, destinationcode):
 		'destination': destination,
 		'trains': result
 	})
+
+def mainpage(request):
+	stations = Station.objects.all()
+	trains = Train.objects.all()
+
+	return render_to_response('trainsapp/mainpage.htm', {
+		'stations': stations,
+		'trains': trains
+	})
