@@ -1,16 +1,32 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.core.exceptions import ValidationError, ObjectDoesNotExist
 
 class Train(models.Model):
     number = models.CharField(max_length = 6)
     name = models.CharField(max_length = 100, null = True, blank = True)
+
+    departure = models.OneToOneField("Departure")
+    arrival = models.OneToOneField("Arrival")
     
     def __unicode__(self):
         return u"(Train {}, id {})".format(self.number, self.id)
 
+    def clean(self):
+        try:
+            departure = self.departure
+        except ObjectDoesNotExist:
+            raise ValidationError(u"The Departure does not exist.")
+        try:
+            arrival = self.arrival
+        except ObjectDoesNotExist:
+            raise ValidationError(u"The Arrival does not exist.")
+        if departure > arrival:
+            raise ValidationError(u"Trains should arrive after they depart.")
+
 class Station(models.Model):
-    code = models.BigIntegerField()
+    code = models.BigIntegerField(unique = True)
     name = models.CharField(max_length = 100)
     
     def __unicode__(self):
@@ -37,13 +53,18 @@ class IntermediateStop(models.Model):
             self.departure
         )
 
+    def clean(self):
+        if self.arrival > self.departure:
+            raise ValidationError(u"Trains cannot arrive after departure.")
+        departure = self.train.departure
+        arrival = self.train.arrival
+        if not (departure <= self.departure <= self.arrival <= arrival):
+            raise ValidationError(u"IntermediateStops should lie between train departure and arrival.")
+
     class Meta:
         ordering = ('departure',)
 
-    #def clean
-
 class Departure(models.Model):
-    train = models.OneToOneField(Train)
     station = models.ForeignKey(Station)
     departure = models.DateTimeField()
     
@@ -58,7 +79,6 @@ class Departure(models.Model):
         )
 
 class Arrival(models.Model):
-    train = models.OneToOneField(Train)
     station = models.ForeignKey(Station)
     arrival = models.DateTimeField()
 

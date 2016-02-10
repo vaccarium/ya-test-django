@@ -1,21 +1,6 @@
 [
 {
     "fields": {
-        "number": "133\u0413",
-        "name": "\u041f\u043e\u0432\u043e\u043b\u0436\u044c\u0435"
-    },
-    "model": "trainsapp.train",
-    "pk": 1
-},
-{
-    "fields": {
-        "number": "325\u0415"
-    },
-    "model": "trainsapp.train",
-    "pk": 2
-},
-{
-    "fields": {
         "code": 2024700,
         "name": "\u0421\u0430\u0440\u0430\u043d\u0441\u043a I"
     },
@@ -72,6 +57,22 @@
 },
 {
     "fields": {
+        "code": 2030000,
+        "name": "Екатеринбург-Пасс"
+    },
+    "model": "trainsapp.station",
+    "pk": 8
+},
+{
+    "fields": {
+        "code": 2000003,
+        "name": "Москва-Казанская"
+    },
+    "model": "trainsapp.station",
+    "pk": 9
+},
+{
+    "fields": {
         "arrival": "2016-02-07T11:01:00Z",
         "station": 4,
         "train": 1,
@@ -112,8 +113,17 @@
 },
 {
     "fields": {
+        "arrival": "2016-02-08T18:37:00Z",
+        "station": 5,
+        "train": 3,
+        "departure": "2016-02-08T18:57:00Z"
+    },
+    "model": "trainsapp.intermediatestop",
+    "pk": 5
+},
+{
+    "fields": {
         "station": 2,
-        "train": 1,
         "arrival": "2016-02-08T09:02:00Z"
     },
     "model": "trainsapp.arrival",
@@ -122,7 +132,6 @@
 {
     "fields": {
         "station": 7,
-        "train": 2,
         "arrival": "2016-02-09T07:05:00Z"
     },
     "model": "trainsapp.arrival",
@@ -130,9 +139,16 @@
 },
 {
     "fields": {
+        "station": 9,
+        "arrival": "2016-02-09T06:23:00Z"
+    },
+    "model": "trainsapp.arrival",
+    "pk": 3
+},
+{
+    "fields": {
         "departure": "2016-02-07T10:10:00Z",
-        "station": 5,
-        "train": 1
+        "station": 5
     },
     "model": "trainsapp.departure",
     "pk": 1
@@ -140,10 +156,46 @@
 {
     "fields": {
         "departure": "2016-02-06T20:28:00Z",
-        "station": 6,
-        "train": 2
+        "station": 6
     },
     "model": "trainsapp.departure",
     "pk": 2
+},
+{
+    "fields": {
+        "departure": "2016-02-08T05:12:00Z",
+        "station": 8
+    },
+    "model": "trainsapp.departure",
+    "pk": 3
+},
+{
+    "fields": {
+        "number": "133\u0413",
+        "arrival": 1,
+        "departure": 1,
+        "name": "\u041f\u043e\u0432\u043e\u043b\u0436\u044c\u0435"
+    },
+    "model": "trainsapp.train",
+    "pk": 1
+},
+{
+    "fields": {
+        "number": "325\u0415",
+        "arrival": 2,
+        "departure": 2
+    },
+    "model": "trainsapp.train",
+    "pk": 2
+},
+{
+    "fields": {
+        "number": "015Е",
+		"name": "Урал",
+        "arrival": 3,
+        "departure": 3
+    },
+    "model": "trainsapp.train",
+    "pk": 3
 }
 ]
