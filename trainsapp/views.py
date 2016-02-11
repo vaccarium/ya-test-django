@@ -18,7 +18,10 @@ def show_train(request, trainid):
 
 
 def show_station(request, stationcode, year, month):
-    """Shows the train calendar for a station; the default month is the current month."""
+    """Shows the train calendar for a station;
+    the default month is the current month.
+    """
+
     station = get_object_or_404(Station, code=stationcode)
 
     year = int(year)
@@ -31,18 +34,21 @@ def show_station(request, stationcode, year, month):
         23, 59, 59                  # screw the leap second
     )
 
-    departures = Departure.objects\
-        .filter(station__code=stationcode)\
-        .exclude(departure__lt=firstday)\
-        .exclude(departure__gt=lastday)
-    intermediates = IntermediateStop.objects\
-        .filter(station__code=stationcode)\
-        .exclude(departure__lt=firstday)\
-        .exclude(departure__gt=lastday)
-    arrivals = Arrival.objects\
-        .filter(station__code=stationcode)\
-        .exclude(arrival__lt=firstday)\
-        .exclude(arrival__gt=lastday)
+    departures = Departure.objects.filter(station__code=stationcode)
+    departures = departures.exclude(
+        departure__lt=firstday,
+        departure__gt=lastday
+    )
+    intermediates = IntermediateStop.objects.filter(station__code=stationcode)
+    intermediates = intermediates.exclude(
+        departure__lt=firstday,
+        departure__gt=lastday
+    )
+    arrivals = Arrival.objects.filter(station__code=stationcode)
+    arrivals = arrivals.exclude(
+        arrival__lt=firstday,
+        arrival__gt=lastday
+    )
 
     # this lists events by the day
     daylist = [[] for day in range(monthlength)]
