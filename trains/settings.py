@@ -108,6 +108,8 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Europe/Moscow'
+# in this project, I didn't care much about timezones
+# but the railways around here run on Europe/Moscow anyway
 
 USE_I18N = True
 

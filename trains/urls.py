@@ -21,11 +21,11 @@ from trainsapp import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
-	url(r'^train/(\d+)/$', views.showtrain, name='showtrain'),
-	url(r'^station/(\d+)/(\d{4})/(\d{1,2})/$', views.showstation, name='showstation'),
-	url(r'^station/(\d+)/$', views.showstation, {'year': now().year, 'month': now().month}, name='showstation'),
+    url(r'^train/(\d+)/$', views.show_train, name='show_train'),
+    url(r'^station/(\d+)/(\d{4})/(\d{1,2})/$', views.show_station, name='show_station'),
+    url(r'^station/(\d+)/$', views.show_station, {'year': now().year, 'month': now().month}, name='show_station'),
 
-	url(r'^route/(\d+)/(\d+)/$', views.route, name='route'),
+    url(r'^route/(\d+)/(\d+)/$', views.route, name='route'),
 
-	url(r'^$', views.mainpage),
+    url(r'^$', views.main_page),
 ]

@@ -1,4 +1,4 @@
-{% load timedelta %}
+﻿{% load timedelta %}
 <!doctype html>
 <html>
 <head>
@@ -33,8 +33,8 @@
 		Станция {{ name }}, {{ month }}.{{ year }}
 	</h2>
 	<div class="buttons">
-		<a class="prevmonth" href="{% url "showstation" stationcode prevmonth.year prevmonth.month %}">Раньше</a>
-		<a class="nextmonth" href="{% url "showstation" stationcode nextmonth.year nextmonth.month %}">Позже</a>
+		<a class="prevmonth" href="{% url "show_station" stationcode prevmonth.year prevmonth.month %}">Раньше</a>
+		<a class="nextmonth" href="{% url "show_station" stationcode nextmonth.year nextmonth.month %}">Позже</a>
 	</div>
 
 	<table class="calendar">
@@ -55,7 +55,7 @@
 				<ul class="trains">
 				{% for stop in day.stops %}
 					<li>
-						<div class="trainnumber"><a href="{% url "showtrain" stop.train.id %}">{{ stop.train.number }}</a></div>
+						<div class="trainnumber"><a href="{% url "show_train" stop.train.id %}">{{ stop.train.number }}</a></div>
 						<div class="time">{{ stop.sorting_date|time:"H:i" }}</div>
 					</li>
 				{% endfor %}

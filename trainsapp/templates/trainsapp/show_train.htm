@@ -27,21 +27,21 @@
 			<th>Отправление</th>
 		</tr>
 		<tr>
-			<td><a href="{% url 'showstation' departure.station.code %}">{{ departure.station.name }}</a></td>
+			<td><a href="{% url "show_station" departure.station.code %}">{{ departure.station.name }}</a></td>
 			<td></td>
 			<td></td>
 			<td>{{ departure.departure|date:"j.m, H:i" }}</td>
 		</tr>
 		{% for stop in intermediate %}
 		<tr>
-			<td><a href="{% url 'showstation' stop.station.code %}">{{ stop.station.name }}</a></td>
+			<td><a href="{% url "show_station" stop.station.code %}">{{ stop.station.name }}</a></td>
 			<td>{{ stop.arrival|date:"j.m, H:i" }}</td>
 			<td>{{ stop.duration|timedelta }}</td>
 			<td>{{ stop.departure|date:"j.m, H:i" }}</td>
 		</tr>
 		{% endfor %}
 		<tr>
-			<td><a href="{% url 'showstation' arrival.station.code %}">{{ arrival.station.name }}</a></td>
+			<td><a href="{% url "show_station" arrival.station.code %}">{{ arrival.station.name }}</a></td>
 			<td>{{ arrival.arrival|date:"j.m, H:i" }}</td>
 			<td></td>
 			<td></td>

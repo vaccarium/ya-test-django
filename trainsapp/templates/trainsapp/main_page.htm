@@ -11,7 +11,7 @@
 	</h3>
 	<ul class="stations">
 		{% for station in stations %}
-		<li><a href="{% url "showstation" station.code %}">{{ station.name }}</a></li>
+		<li><a href="{% url "show_station" station.code %}">{{ station.name }}</a></li>
 		{% endfor %}
 	</ul>
 
@@ -20,7 +20,7 @@
 	</h3>
 	<ul class="trains">
 		{% for train in trains %}
-		<li><a href="{% url "showtrain" train.id %}">{{ train.number }}</a></li>
+		<li><a href="{% url "show_train" train.id %}">{{ train.number }}</a></li>
 		{% endfor %}
 	</ul>
 </body>

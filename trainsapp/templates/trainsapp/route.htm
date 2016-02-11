@@ -20,7 +20,7 @@
 		</tr>
 		{% for result in trains %}
 		<tr>
-			<td><a href="{% url "showtrain" result.train.id %}">{{ result.train.number }}</a></td>
+			<td><a href="{% url "show_train" result.train.id %}">{{ result.train.number }}</a></td>
 			<td>{{ result.departure|date:"j.m, H:i" }}</td>
 			<td> {{ result.duration|timedelta }}</td>
 			<td>{{ result.arrival|date:"j.m, H:i" }}</td>
