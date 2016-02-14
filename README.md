@@ -1,7 +1,7 @@
 ## URL scheme
 
-`/station/<code>/[year/month/]` --- a calendar listing all trains stopping at a station during a specified month
-`/train/<id>/` --- a complete schedule of a train
+* `/station/<code>/[year/month/]` --- a calendar listing all trains stopping at a station during a specified month
+* `/train/<id>/` --- a complete schedule of a train
 
 ## Deployment
 
