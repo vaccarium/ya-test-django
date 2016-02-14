@@ -118,17 +118,21 @@ def route(request, origincode, destinationcode):
         if train.departure.station.code == origincode:
             departuretime = train.departure.departure
         else:
-            departuretime = train.intermediatestop_set\
-                .filter(station__code=origincode)\
-                .earliest('departure')\
+            departuretime = (train
+                .intermediatestop_set
+                .filter(station__code=origincode)
+                .earliest('departure')
                 .departure
+            )
         if train.arrival.station.code == destinationcode:
             arrivaltime = train.arrival.arrival
         else:
-            arrivaltime = train.intermediatestop_set\
-                .filter(station__code=destinationcode)\
-                .latest('arrival')\
+            arrivaltime = (train
+                .intermediatestop_set
+                .filter(station__code=destinationcode)
+                .latest('arrival')
                 .arrival
+            )
         if departuretime < arrivaltime:
             result.append({
                 'train': train,
