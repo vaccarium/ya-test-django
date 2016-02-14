@@ -10,13 +10,14 @@ def show_train(request, trainid):
     train = get_object_or_404(Train, id=trainid)
     intermediate = train.intermediatestop_set
     intermediate = intermediate.select_related('station__name')
-    return render_to_response('trainsapp/show_train.htm', {
+    result = render_to_response('trainsapp/show_train.htm', {
         'number': train.number,
         'name': train.name,
         'departure': train.departure,
         'intermediate': intermediate,
         'arrival': train.arrival
     })
+    return result
 
 
 def show_station(request, stationcode, year, month):
@@ -41,16 +42,19 @@ def show_station(request, stationcode, year, month):
         departure__lt=firstday,
         departure__gt=lastday
     )
+    departures = departures.select_related('train__id', 'train__number')
     intermediates = IntermediateStop.objects.filter(station__code=stationcode)
     intermediates = intermediates.exclude(
         departure__lt=firstday,
         departure__gt=lastday
     )
+    intermediates = intermediates.select_related('train__id', 'train__number')
     arrivals = Arrival.objects.filter(station__code=stationcode)
     arrivals = arrivals.exclude(
         arrival__lt=firstday,
         arrival__gt=lastday
     )
+    arrivals = arrivals.select_related('train__id', 'train__number')
 
     # this lists events by the day
     daylist = [[] for day in range(monthlength)]
@@ -83,7 +87,7 @@ def show_station(request, stationcode, year, month):
     else:
         nextmonth = {'year': year, 'month': month + 1}
 
-    return render_to_response('trainsapp/show_station.htm', {
+    result = render_to_response('trainsapp/show_station.htm', {
         'stationcode': station.code,
         'name': station.name,
         'year': year,
@@ -94,6 +98,7 @@ def show_station(request, stationcode, year, month):
         'nextmonth': nextmonth,
         'weeks': weeks
     })
+    return result
 
 
 def route(request, origincode, destinationcode):
@@ -118,8 +123,8 @@ def route(request, origincode, destinationcode):
         if train.departure.station.code == origincode:
             departuretime = train.departure.departure
         else:
-            departuretime = (train
-                .intermediatestop_set
+            departuretime = (
+                train.intermediatestop_set
                 .filter(station__code=origincode)
                 .earliest('departure')
                 .departure
@@ -127,8 +132,8 @@ def route(request, origincode, destinationcode):
         if train.arrival.station.code == destinationcode:
             arrivaltime = train.arrival.arrival
         else:
-            arrivaltime = (train
-                .intermediatestop_set
+            arrivaltime = (
+                train.intermediatestop_set
                 .filter(station__code=destinationcode)
                 .latest('arrival')
                 .arrival
