@@ -8,11 +8,13 @@ import calendar
 def show_train(request, trainid):
     """Shows the route of a train, with all its stops."""
     train = get_object_or_404(Train, id=trainid)
+    intermediate = train.intermediatestop_set
+    intermediate = intermediate.select_related('station__name')
     return render_to_response('trainsapp/show_train.htm', {
         'number': train.number,
         'name': train.name,
         'departure': train.departure,
-        'intermediate': train.intermediatestop_set.all(),
+        'intermediate': intermediate,
         'arrival': train.arrival
     })
 

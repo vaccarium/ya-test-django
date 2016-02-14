@@ -23,12 +23,12 @@ class Train(models.Model):
             arrival = self.arrival
         except ObjectDoesNotExist:
             raise ValidationError(u"The Arrival does not exist.")
-        if departure > arrival:
+        if departure.departure > arrival.arrival:
             raise ValidationError(u"Trains should arrive after they depart.")
 
 
 class Station(models.Model):
-    code = models.BigIntegerField(unique=True)
+    code = models.BigIntegerField(primary_key=True)
     name = models.CharField(max_length=100)
 
     def __unicode__(self):

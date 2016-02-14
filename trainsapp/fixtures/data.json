@@ -1,129 +1,70 @@
 [
 {
     "fields": {
-        "code": 2024700,
         "name": "\u0421\u0430\u0440\u0430\u043d\u0441\u043a I"
     },
     "model": "trainsapp.station",
-    "pk": 1
+    "pk": 2024700
 },
 {
     "fields": {
-        "code": 2004001,
         "name": "\u0421\u0430\u043d\u043a\u0442-\u041f\u0435\u0442\u0435\u0440\u0431\u0443\u0440\u0433-\u041c\u043e\u0441\u043a\u043e\u0432\u0441\u043a\u0438\u0439"
     },
     "model": "trainsapp.station",
-    "pk": 2
+    "pk": 2004001
 },
 {
     "fields": {
-        "code": 2004600,
         "name": "\u0422\u0432\u0435\u0440\u044c"
     },
     "model": "trainsapp.station",
-    "pk": 3
+    "pk": 2004600
 },
 {
     "fields": {
-        "code": 2060345,
         "name": "\u0417\u0435\u043b\u0451\u043d\u044b\u0439 \u0414\u043e\u043b"
     },
     "model": "trainsapp.station",
-    "pk": 4
+    "pk": 2060345
 },
 {
     "fields": {
-        "code": 2060500,
         "name": "\u041a\u0430\u0437\u0430\u043d\u044c-\u041f\u0430\u0441\u0441"
     },
     "model": "trainsapp.station",
-    "pk": 5
+    "pk": 2060500
 },
 {
     "fields": {
-        "code": 2030400,
         "name": "\u041f\u0435\u0440\u043c\u044c II"
     },
     "model": "trainsapp.station",
-    "pk": 6
+    "pk": 2030400
 },
 {
     "fields": {
-        "code": 2064110,
         "name": "\u041d\u043e\u0432\u043e\u0440\u043e\u0441\u0441\u0438\u0439\u0441\u043a"
     },
     "model": "trainsapp.station",
-    "pk": 7
+    "pk": 2064110
 },
 {
     "fields": {
-        "code": 2030000,
         "name": "Екатеринбург-Пасс"
     },
     "model": "trainsapp.station",
-    "pk": 8
+    "pk": 2030000
 },
 {
     "fields": {
-        "code": 2000003,
         "name": "Москва-Казанская"
     },
     "model": "trainsapp.station",
-    "pk": 9
+    "pk": 2000003
 },
 {
     "fields": {
-        "arrival": "2016-02-07T11:01:00Z",
-        "station": 4,
-        "train": 1,
-        "departure": "2016-02-07T11:03:00Z"
-    },
-    "model": "trainsapp.intermediatestop",
-    "pk": 1
-},
-{
-    "fields": {
-        "arrival": "2016-02-08T01:02:00Z",
-        "station": 3,
-        "train": 1,
-        "departure": "2016-02-08T01:04:00Z"
-    },
-    "model": "trainsapp.intermediatestop",
-    "pk": 2
-},
-{
-    "fields": {
-        "arrival": "2016-02-07T09:13:00Z",
-        "station": 4,
-        "train": 2,
-        "departure": "2016-02-07T09:14:00Z"
-    },
-    "model": "trainsapp.intermediatestop",
-    "pk": 3
-},
-{
-    "fields": {
-        "arrival": "2016-02-07T18:44:00Z",
-        "station": 1,
-        "train": 2,
-        "departure": "2016-02-07T19:04:00Z"
-    },
-    "model": "trainsapp.intermediatestop",
-    "pk": 4
-},
-{
-    "fields": {
-        "arrival": "2016-02-08T18:37:00Z",
-        "station": 5,
-        "train": 3,
-        "departure": "2016-02-08T18:57:00Z"
-    },
-    "model": "trainsapp.intermediatestop",
-    "pk": 5
-},
-{
-    "fields": {
-        "station": 2,
+        "station": 2004001,
         "arrival": "2016-02-08T09:02:00Z"
     },
     "model": "trainsapp.arrival",
@@ -131,7 +72,7 @@
 },
 {
     "fields": {
-        "station": 7,
+        "station": 2064110,
         "arrival": "2016-02-09T07:05:00Z"
     },
     "model": "trainsapp.arrival",
@@ -139,7 +80,7 @@
 },
 {
     "fields": {
-        "station": 9,
+        "station": 2000003,
         "arrival": "2016-02-09T06:23:00Z"
     },
     "model": "trainsapp.arrival",
@@ -147,33 +88,33 @@
 },
 {
     "fields": {
-        "departure": "2016-02-07T10:10:00Z",
-        "station": 5
+        "station": 2060500,
+        "departure": "2016-02-07T10:10:00Z"
     },
     "model": "trainsapp.departure",
     "pk": 1
 },
 {
     "fields": {
-        "departure": "2016-02-06T20:28:00Z",
-        "station": 6
+        "station": 2030400,
+        "departure": "2016-02-06T20:28:00Z"
     },
     "model": "trainsapp.departure",
     "pk": 2
 },
 {
     "fields": {
-        "departure": "2016-02-08T05:12:00Z",
-        "station": 8
+        "station": 2030000,
+        "departure": "2016-02-08T05:12:00Z"
     },
     "model": "trainsapp.departure",
     "pk": 3
 },
 {
     "fields": {
-        "number": "133\u0413",
         "arrival": 1,
         "departure": 1,
+        "number": "133\u0413",
         "name": "\u041f\u043e\u0432\u043e\u043b\u0436\u044c\u0435"
     },
     "model": "trainsapp.train",
@@ -181,21 +122,71 @@
 },
 {
     "fields": {
-        "number": "325\u0415",
         "arrival": 2,
-        "departure": 2
+        "departure": 2,
+        "number": "325\u0415"
     },
     "model": "trainsapp.train",
     "pk": 2
 },
 {
     "fields": {
-        "number": "015Е",
-		"name": "Урал",
         "arrival": 3,
-        "departure": 3
+        "departure": 3,
+        "number": "015Е",
+		"name": "Урал"
     },
     "model": "trainsapp.train",
     "pk": 3
+},
+{
+    "fields": {
+        "station": 2060345,
+        "train": 1,
+        "arrival": "2016-02-07T11:01:00Z",
+        "departure": "2016-02-07T11:03:00Z"
+    },
+    "model": "trainsapp.intermediatestop",
+    "pk": 1
+},
+{
+    "fields": {
+        "station": 2004600,
+        "train": 1,
+        "arrival": "2016-02-08T01:02:00Z",
+        "departure": "2016-02-08T01:04:00Z"
+    },
+    "model": "trainsapp.intermediatestop",
+    "pk": 2
+},
+{
+    "fields": {
+        "station": 2060345,
+        "train": 2,
+        "arrival": "2016-02-07T09:13:00Z",
+        "departure": "2016-02-07T09:14:00Z"
+    },
+    "model": "trainsapp.intermediatestop",
+    "pk": 3
+},
+{
+    "fields": {
+        "station": 2024700,
+        "train": 2,
+        "arrival": "2016-02-07T18:44:00Z",
+        "departure": "2016-02-07T19:04:00Z"
+    },
+    "model": "trainsapp.intermediatestop",
+    "pk": 4
+},
+{
+    "fields": {
+        "station": 2060500,
+        "train": 3,
+        "arrival": "2016-02-08T18:37:00Z",
+        "departure": "2016-02-08T18:57:00Z"
+    },
+    "model": "trainsapp.intermediatestop",
+    "pk": 5
 }
 ]
